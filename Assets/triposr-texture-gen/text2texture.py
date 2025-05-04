@@ -210,7 +210,12 @@ def text2texture(mesh, desc, steps, depth_txt2img_path, img_model, device, out_p
     painted_path = f'{out_path_base}-preproc-depth-paint.png'
     depth_paint_args = [depth_txt2img_path, desc, depth_path, painted_path, '--steps', str(steps), '--image-model', img_model, *(['--device', device] if device else [])]
     print('>', *(shlex.quote(arg) for arg in depth_paint_args))
-    subprocess.run([sys.executable, *depth_paint_args], check=True, env={'PYTORCH_ENABLE_MPS_FALLBACK': '1'})
+    #subprocess.run(['py', '-3.11', *depth_paint_args], check=True, env={'PYTORCH_ENABLE_MPS_FALLBACK': '1'})
+    #subprocess.run([sys.executable, *depth_paint_args], check=True, env={'PYTORCH_ENABLE_MPS_FALLBACK': '1'})
+    
+  
+    subprocess.run([sys.executable, *depth_paint_args], check=True, env={**os.environ, 'PYTORCH_ENABLE_MPS_FALLBACK': '1'})
+    
     with subprocess.Popen(['bash', '-c', 'while true; do echo -n .; sleep 0.5; done']) as proc:
         tex_imdata = compute_raycast_texture(tmesh, raycast, np.array(Image.open(painted_path)), [[raycast_slices[0], raycast_slices[2]], [raycast_slices[1], raycast_slices[3]]], tex_imdata, size, erode=True)
         proc.kill()

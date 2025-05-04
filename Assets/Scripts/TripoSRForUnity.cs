@@ -9,13 +9,13 @@ public class TripoSRForUnity : MonoBehaviour
 {
     [Header("General Settings")]
     [SerializeField, Tooltip("Path to your Python executable")]
-    private string pythonPath = "/usr/bin/python";
+    private string pythonPath = "python";
     
     [SerializeField, Tooltip("If true, automatically adds the generated mesh to the scene.")]
-    private bool autoAddMesh = true;
+    private bool autoAddMesh = false;
 
     [SerializeField, Tooltip("If true, automatically adds MeshCollider & RigidBody.")]
-    private bool autoAddPhysicsComponents = true;
+    private bool autoAddPhysicsComponents = false;
     
     [SerializeField, Tooltip("If true, automatically rotates the mesh's parent GameObject to negate wrong rotations.")]
     private bool autoFixRotation = true;
@@ -64,6 +64,11 @@ public class TripoSRForUnity : MonoBehaviour
     private bool isProcessRunning = false;
 
     public static event Action OnPythonProcessEnded;
+
+    public void SetInputImage(Texture2D image)
+    {
+        images = new Texture2D[] { image };
+    }
 
     public void RunTripoSR()
     {
