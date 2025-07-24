@@ -1,0 +1,295 @@
+{
+  "6": {
+    "inputs": {
+      "text": "Ultra-realistic photo of genetically fused strawberry-chocolate fruit growing on vine, white background, botanical hybrid concept: 1) Heart-shaped berry with strawberry surface texture (dimpled seeds & velvety coating) but deep cocoa-brown pigmentation 2) Glossy cross-section revealing marbled layers of ruby-red strawberry flesh and molten chocolate vascular patterns 3) Natural crystalline sugar formations on stem resembling frost, chocolate ganache-like sap droplets 4) Organic growth details including cacao pod segmentation on calyx and cocoa butter sheen on leaves 5) Soft directional lighting with dew reflections, 8K macro texture showing trichomes and sugar crystallization, scientific specimen aesthetic",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "30",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "27": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "30": {
+    "inputs": {
+      "ckpt_name": "flux1-dev-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "35": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "40": {
+    "inputs": {
+      "unet_name": null,
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "41": {
+    "inputs": {
+      "clip_name1": null,
+      "clip_name2": null,
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "42": {
+    "inputs": {
+      "vae_name": "SD15\\vaeFtMse840000Ema_v10.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "44": {
+    "inputs": {
+      "unet_name": null,
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "45": {
+    "inputs": {
+      "clip_name1": null,
+      "clip_name2": null,
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "46": {
+    "inputs": {
+      "vae_name": "SD15\\vaeFtMse840000Ema_v10.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "54": {
+    "inputs": {
+      "noise": [
+        "55",
+        0
+      ],
+      "guider": [
+        "56",
+        0
+      ],
+      "sampler": [
+        "57",
+        0
+      ],
+      "sigmas": [
+        "58",
+        0
+      ],
+      "latent_image": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "55": {
+    "inputs": {
+      "noise_seed": 9594575028278
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "随机噪波"
+    }
+  },
+  "56": {
+    "inputs": {
+      "model": [
+        "63",
+        0
+      ],
+      "conditioning": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "基本引导器"
+    }
+  },
+  "57": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "58": {
+    "inputs": {
+      "scheduler": "beta",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "63",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "61": {
+    "inputs": {
+      "samples": [
+        "54",
+        0
+      ],
+      "vae": [
+        "30",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "63": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 1024,
+      "height": 1024,
+      "model": [
+        "87",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "采样算法（Flux）"
+    }
+  },
+  "69": {
+    "inputs": {
+      "unet_name": null
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "72": {
+    "inputs": {
+      "clip_name1": null,
+      "clip_name2": null,
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoaderGGUF",
+    "_meta": {
+      "title": "DualCLIPLoader (GGUF)"
+    }
+  },
+  "73": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "74": {
+    "inputs": {
+      "lora_name": "蒸汽波_8,90年代复古风_起风了1plus.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "85": {
+    "inputs": {
+      "vae_name": "SD15\\vaeFtMse840000Ema_v10.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "87": {
+    "inputs": {
+      "lora_name": "FLUX-五彩水果蔬菜_v1.0.safetensors",
+      "strength_model": 0.5000000000000001,
+      "model": [
+        "74",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  }
+}

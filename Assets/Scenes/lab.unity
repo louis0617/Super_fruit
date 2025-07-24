@@ -3559,7 +3559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateButton: {fileID: 2033312953}
-  sourceImage: {fileID: 2800000, guid: 4fde584a0b462fb4982e5b6c2645f5f4, type: 3}
+  sourceImage: {fileID: 2800000, guid: 1742261e7b54fd54297d03404bcc4cde, type: 3}
   spawnPosition: {x: -9.726, y: 2, z: 75.398}
   spawnRotationEuler: {x: -90, y: -90, z: 180}
   modelsRelativePath: Models
